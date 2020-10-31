@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head}"></head>
+<body>
+
+<div th:replace="~{fragments/navigation-bar :: navigation-bar}"></div>
+
+<form class="form-group" action="/settings" method="post">
+  <fieldset>
+    <legend>Twilio Settings</legend>
+
+      <label class="form-label" for="account_sid">
+        Account SID:
+        <span class="popover popover-right">
+          <span class="label label-rounded label-secondary">?</span>
+          <div class="popover-container">
+            <div class="card">
+              <div class="card-body">
+                Enter your Twilio Account SID, you can find it in your Twilio Console:<br><br>
+                <a href="https://www.twilio.com/console">https://www.twilio.com/console</a>
+              </div>
+            </div>
+          </div>
+        </span>
+      </label>
+      <input class="form-input" type="text" id="account_sid" name="account_sid" placeholder="AC................................"><br>
+
+      <label class="form-label" for="auth_token">
+        Auth Token:
+        <span class="popover popover-right">
+          <span class="label label-rounded label-secondary">?</span>
+          <div class="popover-container">
+            <div class="card">
+              <div class="card-body">
+                Enter your Twilio Auth Token, you can find it in your Twilio Console.<br><br>
+                See also: <a href="https://support.twilio.com/hc/en-us/articles/223136027-Auth-Tokens-and-How-to-Change-Them">Twilio - Auth Tokens</a>
+              </div>
+            </div>
+          </div>
+        </span>
+      </label>
+      <input class="form-input" type="text" id="auth_token" name="auth_token" placeholder="................................"><br>
+
+      <input class="btn btn-primary" type="submit" value="Save">
+  </fieldset>
+</form>
+
+</body>
+</html>

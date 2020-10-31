@@ -1,0 +1,26 @@
+/*
+
+Palette
+-------
+Primary: #5755d9
+
+
+ */
+
+.navigationBar {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+.navigationBarItem {
+    padding: 1em 2em 1em 2em;
+    font-weight: bold;
+    border-bottom: 5px solid #5755d9;
+    border-top: 5px solid #5755d9;
+}
+
+.navigationBarItem:hover {
+    border-bottom: 5px solid white;
+}
