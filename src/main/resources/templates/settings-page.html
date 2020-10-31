@@ -5,45 +5,45 @@
 
 <div th:replace="~{fragments/navigation-bar :: navigation-bar}"></div>
 
-<form class="form-group" action="/settings" method="post">
-  <fieldset>
-    <legend>Twilio Settings</legend>
+<div class="contentContainer">
+  <form class="form-group contentItem" action="/settings" method="post">
+    <h5>Twilio Settings</h5>
 
-      <label class="form-label" for="account_sid">
-        Account SID:
-        <span class="popover popover-right">
-          <span class="label label-rounded label-secondary">?</span>
-          <div class="popover-container">
-            <div class="card">
-              <div class="card-body">
-                Enter your Twilio Account SID, you can find it in your Twilio Console:<br><br>
-                <a href="https://www.twilio.com/console">https://www.twilio.com/console</a>
-              </div>
+    <label class="form-label" for="account_sid">
+      Account SID:
+      <span class="popover popover-right">
+        <span class="label label-rounded label-secondary" style="font-weight: bold; cursor: help;">?</span>
+        <div class="popover-container">
+          <div class="card">
+            <div class="card-body">
+              Enter your Twilio Account SID, you can find it in your Twilio Console:<br><br>
+              <a href="https://www.twilio.com/console">https://www.twilio.com/console</a>
             </div>
           </div>
-        </span>
-      </label>
-      <input class="form-input" type="text" id="account_sid" name="account_sid" placeholder="AC................................"><br>
+        </div>
+      </span>
+    </label>
+    <input class="form-input" type="password" id="account_sid" name="account_sid" required><br>
 
-      <label class="form-label" for="auth_token">
-        Auth Token:
-        <span class="popover popover-right">
-          <span class="label label-rounded label-secondary">?</span>
-          <div class="popover-container">
-            <div class="card">
-              <div class="card-body">
-                Enter your Twilio Auth Token, you can find it in your Twilio Console.<br><br>
-                See also: <a href="https://support.twilio.com/hc/en-us/articles/223136027-Auth-Tokens-and-How-to-Change-Them">Twilio - Auth Tokens</a>
-              </div>
+    <label class="form-label" for="auth_token">
+      Auth Token:
+      <span class="popover popover-right">
+        <span class="label label-rounded label-secondary" style="font-weight: bold; cursor: help">?</span>
+        <div class="popover-container">
+          <div class="card">
+            <div class="card-body">
+              Enter your Twilio Auth Token, you can find it in your Twilio Console.<br><br>
+              See also: <a href="https://support.twilio.com/hc/en-us/articles/223136027-Auth-Tokens-and-How-to-Change-Them">Twilio - Auth Tokens</a>
             </div>
           </div>
-        </span>
-      </label>
-      <input class="form-input" type="text" id="auth_token" name="auth_token" placeholder="................................"><br>
+        </div>
+      </span>
+    </label>
+    <input class="form-input" type="password" id="auth_token" name="auth_token" required><br>
 
-      <input class="btn btn-primary" type="submit" value="Save">
-  </fieldset>
-</form>
+    <input class="btn btn-primary" type="submit" value="Save">
+  </form>
+</div>
 
 </body>
 </html>

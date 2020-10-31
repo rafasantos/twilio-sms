@@ -1,12 +1,30 @@
 /*
-
 Palette
 -------
-Primary: #5755d9
-
-
+primary-lighter: #6968d4
+primary: #5755d9
+primary-darker: #4240d4
+mandatory: rosybrown
  */
 
+/* Spectre override */
+.form-input:not(:placeholder-shown):invalid {
+    border-color: rosybrown;
+}
+
+/* General layout */
+.contentContainer {
+    display: flex;
+    justify-content: center;
+    margin: 0em 1em 0em 1em;
+}
+
+.contentItem {
+    flex-grow: 1;
+    max-width: 850px;
+}
+
+/* Navigation bar */
 .navigationBar {
     cursor: pointer;
     display: flex;
@@ -15,12 +33,14 @@ Primary: #5755d9
 }
 
 .navigationBarItem {
-    padding: 1em 2em 1em 2em;
     font-weight: bold;
-    border-bottom: 5px solid #5755d9;
-    border-top: 5px solid #5755d9;
+    padding: 1em 2em 1em 2em;
 }
 
 .navigationBarItem:hover {
-    border-bottom: 5px solid white;
+    background-color: #6968d4;
+}
+
+.navigationBarItem:active {
+    background-color: #4240d4;
 }
