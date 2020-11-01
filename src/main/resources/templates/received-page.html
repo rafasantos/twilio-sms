@@ -24,17 +24,17 @@
 <div th:replace="~{fragments/info :: info}"></div>
 
 <div class="contentContainer">
-  <form class="form-group contentItem" id="mainForm" action="/sent" method="get" onsubmit="handleSubmit()">
+  <form class="form-group contentItem" id="mainForm" action="/received" method="get" onsubmit="handleSubmit()">
     <h5 class="marginTop">Messages Sent</h5>
 
     <label class="form-label" for="fromPhoneNumber">
-      From:
+      To:
       <span class="popover popover-right">
         <span class="label label-rounded label-secondary" style="font-weight: bold; cursor: help;">?</span>
         <div class="popover-container">
           <div class="card">
             <div class="card-body">
-              Select a phone number from your Twilio Account to see its sent messages.
+              Select a phone number from your Twilio Account to see its received messages.
             </div>
           </div>
         </div>
@@ -47,8 +47,8 @@
 
     <input class="btn btn-primary" type="submit" value="Show Messages">
 
-    <h5 class="marginTop" th:if="${messagesSent != null}">Displaying The Last 100 Messages</h5>
-    <div th:each="message : ${messagesSent}">
+    <h5 class="marginTop" th:if="${messagesReceived != null}">Displaying The Last 100 Messages</h5>
+    <div th:each="message : ${messagesReceived}">
       <div class="messageCard">
         <div class="messageCardHeader">
           <span>Status: </span><span th:text="${message.status}"></span> |
