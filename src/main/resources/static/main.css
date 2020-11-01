@@ -4,6 +4,7 @@ Palette
 primary-lighter: #6968d4
 primary: #5755d9
 primary-darker: #4240d4
+secondary-lighter: #f1f1fc
 mandatory: rosybrown
  */
 
@@ -47,4 +48,15 @@ mandatory: rosybrown
 
 .navigationBarItem:active {
     background-color: #4240d4;
+}
+
+/* Message Card */
+.messageCard {
+    border: #f1f1fc solid 1px;
+    padding: .5em;
+}
+
+.messageCardHeader {
+    font-size: small;
+    margin-bottom: .5em;
 }
