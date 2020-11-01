@@ -3,10 +3,29 @@
 <head th:replace="~{fragments/header :: head}"></head>
 <body>
 
+<script>
+  const initMainForm = () => {
+    const lastTwilioAccountSid = sessionStorage.getItem('twilioAccountSid')
+    const lastTwilioAuthToken = sessionStorage.getItem('twilioAuthToken')
+    const form = document.getElementById("mainForm")
+    form.elements.namedItem("account_sid").value = lastTwilioAccountSid === null ? '' : lastTwilioAccountSid
+    form.elements.namedItem("auth_token").value = lastTwilioAuthToken === null ? '' : lastTwilioAuthToken
+  }
+
+  const handleSubmit = (form) => {
+    const twilioAccountSid = form.elements.namedItem("account_sid").value
+    const twilioAuthToken = form.elements.namedItem("auth_token").value
+    sessionStorage.setItem("twilioAccountSid", twilioAccountSid)
+    sessionStorage.setItem("twilioAuthToken", twilioAuthToken)
+  }
+</script>
+
 <div th:replace="~{fragments/navigation-bar :: navigation-bar}"></div>
+<div th:replace="~{fragments/info :: info}"></div>
+
 
 <div class="contentContainer">
-  <form class="form-group contentItem" action="/settings" method="post">
+  <form class="form-group contentItem" id="mainForm" action="/settings" method="post" onsubmit="handleSubmit(this)">
     <h5 class="marginTop">Twilio Settings</h5>
 
     <label class="form-label" for="account_sid">
@@ -44,6 +63,10 @@
     <input class="btn btn-primary" type="submit" value="Save">
   </form>
 </div>
+
+<script>
+  initMainForm()
+</script>
 
 </body>
 </html>
