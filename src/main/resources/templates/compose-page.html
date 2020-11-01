@@ -3,8 +3,6 @@
 <head th:replace="~{fragments/header :: head}"></head>
 <body>
 
-<div th:replace="~{fragments/navigation-bar :: navigation-bar}"></div>
-
 <script>
   const initMainForm = () => {
     const lastFromPhoneNumber = sessionStorage.getItem('lastFromPhoneNumber')
@@ -56,9 +54,12 @@
   }
 </script>
 
+<div th:replace="~{fragments/navigation-bar :: navigation-bar}"></div>
+<div th:replace="~{fragments/info :: info}"></div>
+
 <div class="contentContainer">
   <form class="form-group contentItem" id="mainForm" action="/compose" method="post" onsubmit="handleSubmit()">
-    <h5>Compose a new SMS</h5>
+    <h5 class="marginTop">Compose a new SMS</h5>
 
     <label class="form-label" for="fromPhoneNumber">
       From:

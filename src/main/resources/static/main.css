@@ -12,6 +12,11 @@ mandatory: rosybrown
     border-color: rosybrown;
 }
 
+/* Margins */
+.marginTop {
+    margin-top: 1em;
+}
+
 /* General layout */
 .contentContainer {
     display: flex;
@@ -29,7 +34,6 @@ mandatory: rosybrown
     cursor: pointer;
     display: flex;
     justify-content: center;
-    margin-bottom: 2em;
 }
 
 .navigationBarItem {

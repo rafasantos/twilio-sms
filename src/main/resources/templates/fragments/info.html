@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="info">
+  <div class="contentContainer" th:if="${success != null || error != null}">
+    <div class="contentItem marginTop" style="width: 100%; text-align: center;">
+      <span class="label label-secondary" th:if="${success != null}" th:text="${success}"></span>
+      <span class="label label-error" th:if="${error != null}" th:text="${error}"></span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
