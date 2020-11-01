@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head}"></head>
+<body>
+
+<div th:replace="~{fragments/navigation-bar :: navigation-bar}"></div>
+
+<table>
+  <tr>
+    <td><b>Path</b></td>
+    <td th:text="${path}"/>
+  </tr>
+  <tr>
+    <td><b>Error</b></td>
+    <td th:text="${error}"/>
+  </tr>
+  <tr>
+    <td><b>Status</b></td>
+    <td th:text="${status}"/>
+  </tr>
+  <tr>
+    <td><b>Message</b></td>
+    <td th:text="${message}"/>
+  </tr>
+</table>
+
+
+
+</body>
+</html>

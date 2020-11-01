@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class TwilioConfiguration {
-    @Value("${twilio.authentication.account_sid}")
+    @Value("${twilio.authentication.account_sid:UNKNOWN_TWILIO_ACCOUNT_SID}")
     private String accountSid;
-    @Value("${twilio.authentication.auth_token}")
+    @Value("${twilio.authentication.auth_token:UNKNOWN_TWILIO_AUTH_TOKEN}")
     private String authToken;
 
     @Bean
