@@ -18,7 +18,9 @@ public class SettingsController {
     @PostMapping
     public String post(@RequestParam("account_sid") String account_sid,
                        @RequestParam("auth_token") String auth_token) {
+        // TODO: Add authentication instead of using auccount_sid + auth_token
         // TODO: Create a TwilioRestClient factory instead of removing/registering new spring beans
+        // TODO: Manage different TwilioRestClients for different authenticated users
         TwilioRestClient.Builder builder = new TwilioRestClient.Builder(account_sid, auth_token);
         TwilioRestClient newTwilioRestClient = builder.build();
         applicationContext.removeBeanDefinition("twilioRestClient");

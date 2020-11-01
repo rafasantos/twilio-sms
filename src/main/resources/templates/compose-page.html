@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head}"></head>
+<body>
+
+<div th:replace="~{fragments/navigation-bar :: navigation-bar}"></div>
+
+<script>
+  const initMainForm = () => {
+    const lastFromPhoneNumber = sessionStorage.getItem('lastFromPhoneNumber')
+    const lastToPhoneNumber = sessionStorage.getItem('lastToPhoneNumber')
+    const smsDraft = sessionStorage.getItem('smsDraft')
+    const form = document.getElementById("mainForm")
+    form.elements.namedItem("fromPhoneNumber").value = lastFromPhoneNumber === null ? '' : lastFromPhoneNumber
+    form.elements.namedItem("toPhoneNumber").value = lastToPhoneNumber === null ? '' : lastToPhoneNumber
+    form.elements.namedItem("smsMessage").value = smsDraft === null ? '' : smsDraft
+  }
+
+  const handleSubmit = () => {
+    sessionStorage.setItem('smsDraft', '')
+  }
+
+  const handleFromPhoneNumberChanged = (fromPhoneNumber) => {
+    sessionStorage.setItem('lastFromPhoneNumber', fromPhoneNumber)
+  }
+
+  const handleToPhoneNumberChanged = (toPhoneNumber) => {
+    let phoneNumberFormatted = toPhoneNumber
+    if (phoneNumberFormatted && phoneNumberFormatted.length > 0) {
+      if (!phoneNumberFormatted.startsWith('+')) {
+        phoneNumberFormatted = '+' + toPhoneNumber
+        const form = document.getElementById("mainForm")
+        form.elements.namedItem("toPhoneNumber").value = phoneNumberFormatted
+      }
+    }
+    sessionStorage.setItem('lastToPhoneNumber', phoneNumberFormatted)
+  }
+
+  const handleSmsMessageChanged = (smsMessageElement) => {
+    const smsValue = smsMessageElement.value
+    sessionStorage.setItem('smsDraft', smsValue)
+
+    const smsLength = smsValue.length
+    const smsMessageLengthElement = document.getElementById('smsMessageLength')
+    smsMessageLengthElement.innerText = 'Characters: ' + smsLength
+
+    if (smsLength >= 160) {
+      smsMessageElement.setCustomValidity('SMS text message must have less than 160 characters')
+      smsMessageLengthElement.style.fontWeight = 'bold'
+      smsMessageLengthElement.style.color = 'red'
+    } else {
+      smsMessageElement.setCustomValidity('')
+      smsMessageLengthElement.style.fontWeight = 'inherit'
+      smsMessageLengthElement.style.color = 'inherit'
+    }
+  }
+</script>
+
+<div class="contentContainer">
+  <form class="form-group contentItem" id="mainForm" action="/compose" method="post" onsubmit="handleSubmit()">
+    <h5>Compose a new SMS</h5>
+
+    <label class="form-label" for="fromPhoneNumber">
+      From:
+      <span class="popover popover-right">
+        <span class="label label-rounded label-secondary" style="font-weight: bold; cursor: help;">?</span>
+        <div class="popover-container">
+          <div class="card">
+            <div class="card-body">
+              Select a phone number from your Twilio Account to send the SMS message.
+            </div>
+          </div>
+        </div>
+      </span>
+    </label>
+    <select class="form-select" id="fromPhoneNumber" name="fromPhoneNumber" onchange="handleFromPhoneNumberChanged(this.value)" required>
+      <option value="">Select a phone number</option>
+      <option th:each="phoneNumber: ${phoneNumbers}" th:value="${phoneNumber}" th:text="${phoneNumber}"></option>
+    </select><br><br>
+
+    <label class="form-label" for="toPhoneNumber">
+      To:
+      <span class="popover popover-right">
+        <span class="label label-rounded label-secondary" style="font-weight: bold; cursor: help;">?</span>
+        <div class="popover-container">
+          <div class="card">
+            <div class="card-body">
+              The phone number to send the SMS in the Country + PhoneNumber format. Example: <code>+12223334444</code>
+            </div>
+          </div>
+        </div>
+      </span>
+    </label>
+    <input
+      class="form-input"
+      type="tel"
+      id="toPhoneNumber"
+      name="toPhoneNumber"
+      onkeydown="handleToPhoneNumberChanged(this.value)"
+      onchange="handleToPhoneNumberChanged(this.value)"
+      pattern="[+][0-9]{11}"
+      required>
+    <div style="text-align: right; font-size: small">
+      <span>Country code followed by phone number. Example: +12223334444</span>
+    </div><br>
+
+    <label class="form-label" for="smsMessage">
+      SMS Message:
+      <span class="popover popover-right">
+        <span class="label label-rounded label-secondary" style="font-weight: bold; cursor: help;">?</span>
+        <div class="popover-container">
+          <div class="card">
+            <div class="card-body">
+              The SMS text message you would like to send, limited to 160 character.
+            </div>
+          </div>
+        </div>
+      </span>
+    </label>
+    <textarea
+      class="form-input"
+      id="smsMessage"
+      name="smsMessage"
+      placeholder="Enter you SMS text message..."
+      rows="3"
+      required
+      onkeydown="handleSmsMessageChanged(this)"
+      onkeyup="handleSmsMessageChanged(this)"></textarea>
+    <div style="text-align: right; font-size: small">
+      <span id="smsMessageLength">Characters: 0</span>
+    </div><br>
+
+    <input class="btn btn-primary" type="submit" value="Send SMS">
+  </form>
+</div>
+
+<script>
+  initMainForm()
+</script>
+
+</body>
+</html>

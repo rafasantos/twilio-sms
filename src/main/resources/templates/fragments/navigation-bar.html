@@ -3,9 +3,15 @@
 <body>
 
 <div th:fragment="navigation-bar" class="navigationBar bg-primary">
-  <span class="navigationBarItem">Settings</span>
-  <span class="navigationBarItem">Messages Sent</span>
-  <span class="navigationBarItem">Messages Received</span>
+  <span class="navigationBarItem" onclick="handleNavigation('settings')">Settings</span>
+  <span class="navigationBarItem" onclick="handleNavigation('compose')">Compose</span>
+  <span class="navigationBarItem" onclick="handleNavigation('sent')">Sent</span>
+  <span class="navigationBarItem" onclick="handleNavigation('received')">Received</span>
+  <script>
+    const handleNavigation = (destination) => {
+      window.location = '/' + destination
+    }
+  </script>
 </div>
 
 </body>
