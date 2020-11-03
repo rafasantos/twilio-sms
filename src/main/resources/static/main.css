@@ -71,7 +71,7 @@ body {
 
 /* Message Card */
 .messageCard {
-    border: #f1f1fc solid 1px;
+    border: lightgrey solid 2px;
     padding: .5em;
     margin-top: 1em;
 }
@@ -81,8 +81,6 @@ body {
     font-family: "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Courier, monospace;
     margin-bottom: .5em;
 }
-
-
 
 /* Responsiveness */
 @media screen and (max-width: 480px) {

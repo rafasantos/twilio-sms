@@ -47,13 +47,14 @@
 
     <input class="btn btn-primary" type="submit" value="Show Messages">
 
-    <h5 class="marginTop" th:if="${messagesReceived != null}">Displaying The Last 100 Messages</h5>
+    <h5 class="marginTop" th:if="${messagesReceived != null}">Displaying The Last <span th:text="${messagesReceived.size()}"></span> Messages</h5>
     <div th:each="message : ${messagesReceived}">
       <div class="messageCard">
         <div class="messageCardHeader">
-          <span>Status: </span><span th:text="${message.status}"></span> |
+          <span>Status: </span><span th:text="${message.getStatus()}"></span> |
+          <span>From: </span><span th:text="${message.getFrom().getEndpoint()}"></span> |
           <span th:if="${message.getErrorCode() != null}">Error Code: </span><span th:text="${message.getErrorCode()}"></span>
-          <span>sid: </span><span th:text="${message.getSid()}"></span> |
+          <span>sid: </span><span th:text="${message.getSid()}"></span><br>
           <span>Date Sent: </span><span name="dateSent" th:text="${message.getDateSent()}"></span>
         </div>
         <div th:text="${message.body}"></div>
