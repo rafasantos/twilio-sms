@@ -15,6 +15,7 @@ public class AccountService {
     private final TwilioRestClient twilioRestClient;
 
     public Set<String> findAllPhoneNumbers() {
+        validateTwilioRestClient();
         final Set<String> result = new HashSet<>();
         var account = Account.fetcher().fetch(twilioRestClient);
         var incomingPhoneNumbers = IncomingPhoneNumber.reader(account.getSid()).read(twilioRestClient);
@@ -22,5 +23,11 @@ public class AccountService {
             result.add(incomePhoneNumber.getPhoneNumber().getEndpoint());
         }
         return result;
+    }
+
+    private void validateTwilioRestClient() {
+        if ("UNKNOWN_TWILIO_ACCOUNT_SID".equals(twilioRestClient.getAccountSid())) {
+            throw new IllegalStateException("Invalid Twilio Account Sid: " + twilioRestClient.getAccountSid());
+        }
     }
 }

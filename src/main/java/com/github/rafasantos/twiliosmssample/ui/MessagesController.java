@@ -37,9 +37,14 @@ public class MessagesController {
             model.addAttribute("error", "Error when finding messages " + e.getMessage());
         }
 
-        Set<String> phoneNumbers = accountService.findAllPhoneNumbers();
-        model.addAttribute("phoneNumbers", phoneNumbers);
-        return "messages-page";
+        try {
+            Set<String> phoneNumbers = accountService.findAllPhoneNumbers();
+            model.addAttribute("phoneNumbers", phoneNumbers);
+            return "messages-page";
+        } catch (IllegalStateException e) {
+            model.addAttribute("error", e.getMessage());
+            return "settings-page";
+        }
     }
 
     private List<MessagePojo> mergeMessages(List<Message> messagesSent, List<Message> messagesReceived) {

@@ -43,8 +43,13 @@ public class ComposeController {
 
     @GetMapping
     public String get(Model model) {
-        Set<String> phoneNumbers = accountService.findAllPhoneNumbers();
-        model.addAttribute("phoneNumbers", phoneNumbers);
-        return "compose-page";
+        try {
+            Set<String> phoneNumbers = accountService.findAllPhoneNumbers();
+            model.addAttribute("phoneNumbers", phoneNumbers);
+            return "compose-page";
+        } catch (IllegalStateException e) {
+            model.addAttribute("error", e.getMessage());
+            return "settings-page";
+        }
     }
 }
