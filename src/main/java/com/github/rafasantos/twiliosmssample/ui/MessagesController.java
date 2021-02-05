@@ -24,11 +24,11 @@ public class MessagesController {
     private final SmsService smsService;
 
     @GetMapping
-    public String get(@RequestParam("fromPhoneNumber") Optional<String> fromPhoneNumber, Model model) {
+    public String get(@RequestParam("phoneNumber") Optional<String> phoneNumber, Model model) {
         try {
-            if (fromPhoneNumber.isPresent()) {
-                List<Message> messagesSent = smsService.messagesReceived(fromPhoneNumber.get());
-                List<Message> messagesReceived = smsService.messagesSent(fromPhoneNumber.get());
+            if (phoneNumber.isPresent()) {
+                List<Message> messagesSent = smsService.messagesReceived(phoneNumber.get());
+                List<Message> messagesReceived = smsService.messagesSent(phoneNumber.get());
                 List<MessagePojo> messages = mergeMessages(messagesSent, messagesReceived);
                 model.addAttribute("messages", messages);
             }

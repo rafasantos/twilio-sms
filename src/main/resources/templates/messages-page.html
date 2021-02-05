@@ -5,18 +5,18 @@
 
 <script>
   const initMainForm = () => {
-    const lastFromPhoneNumber = sessionStorage.getItem('lastFromPhoneNumber')
+    const lastPhoneNumber = sessionStorage.getItem('lastPhoneNumber')
     const form = document.getElementById("mainForm")
-    form.elements.namedItem("fromPhoneNumber").value = lastFromPhoneNumber === null ? '' : lastFromPhoneNumber
+    form.elements.namedItem("phoneNumber").value = lastPhoneNumber === null ? '' : lastPhoneNumber
     const datesSent = document.getElementsByName("dateSent")
     for (let dateSent of datesSent) {
       const parsedDate = new Date(dateSent.textContent)
-      dateSent.textContent = parsedDate.toLocaleString()
+      dateSent.textContent = parsedDate.toLocaleString() + " TimeZone: " + parsedDate.getTimezoneOffset()
     }
   }
 
-  const handleFromPhoneNumberChanged = (fromPhoneNumber) => {
-    sessionStorage.setItem('lastFromPhoneNumber', fromPhoneNumber)
+  const handlePhoneNumberChanged = (phoneNumber) => {
+    sessionStorage.setItem('lastPhoneNumber', phoneNumber)
   }
 </script>
 
@@ -27,7 +27,7 @@
   <form class="form-group contentItem" id="mainForm" action="/messages" method="get" onsubmit="handleSubmit()">
     <h5 class="marginTop">Messages</h5>
 
-    <label class="form-label" for="fromPhoneNumber">
+    <label class="form-label" for="phoneNumber">
       Phone Number:
       <span class="popover popover-right">
         <span class="label label-rounded label-secondary" style="font-weight: bold; cursor: help;">?</span>
@@ -40,7 +40,7 @@
         </div>
       </span>
     </label>
-    <select class="form-select" id="fromPhoneNumber" name="fromPhoneNumber" onchange="handleFromPhoneNumberChanged(this.value)" required>
+    <select class="form-select" id="phoneNumber" name="phoneNumber" onchange="handlePhoneNumberChanged(this.value)" required>
       <option value="">Select a phone number</option>
       <option th:each="phoneNumber: ${phoneNumbers}" th:value="${phoneNumber}" th:text="${phoneNumber}"></option>
     </select><br><br>
