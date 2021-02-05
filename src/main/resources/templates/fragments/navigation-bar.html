@@ -5,8 +5,7 @@
 <div th:fragment="navigation-bar" class="navigationBar bg-primary">
   <span class="navigationBarItem" onclick="handleNavigation('settings')">Settings</span>
   <span class="navigationBarItem" onclick="handleNavigation('compose')">Compose</span>
-  <span class="navigationBarItem" onclick="handleNavigation('sent')">Sent</span>
-  <span class="navigationBarItem" onclick="handleNavigation('received')">Received</span>
+  <span class="navigationBarItem" onclick="handleNavigation('messages')">Messages</span>
   <script>
     const handleNavigation = (destination) => {
       window.location = '/' + destination
