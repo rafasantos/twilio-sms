@@ -19,7 +19,7 @@ Quick Start
 Download the latest `.jar` file from the [releases page], navigate to the folder where the file is saved and run:
 
 ```bash
-java -jar twilio-sms-v1.0.jar
+java -jar twilio-sms-1.0.jar
 ```
 
 Open a web browser and navigate to http://localhost:8181/
