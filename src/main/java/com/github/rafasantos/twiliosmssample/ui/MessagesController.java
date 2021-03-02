@@ -38,7 +38,7 @@ public class MessagesController {
         }
 
         try {
-            Set<String> phoneNumbers = accountService.findAllPhoneNumbers();
+            List<String> phoneNumbers = accountService.findAllPhoneNumbers().stream().sorted().collect(Collectors.toList());
             model.addAttribute("phoneNumbers", phoneNumbers);
             return "messages-page";
         } catch (IllegalStateException e) {

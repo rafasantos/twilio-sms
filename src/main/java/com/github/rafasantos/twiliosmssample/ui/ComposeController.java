@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/compose")
@@ -36,7 +39,7 @@ public class ComposeController {
             log.error("Error when sending message: {}", e.getMessage(), e);
             model.addAttribute("error", "Error when sending message. " + e.getMessage());
         }
-        Set<String> phoneNumbers = accountService.findAllPhoneNumbers();
+        List<String> phoneNumbers = accountService.findAllPhoneNumbers().stream().sorted().collect(Collectors.toList());
         model.addAttribute("phoneNumbers", phoneNumbers);
         return "compose-page";
     }
@@ -44,7 +47,7 @@ public class ComposeController {
     @GetMapping
     public String get(Model model) {
         try {
-            Set<String> phoneNumbers = accountService.findAllPhoneNumbers();
+            List<String> phoneNumbers = accountService.findAllPhoneNumbers().stream().sorted().collect(Collectors.toList());
             model.addAttribute("phoneNumbers", phoneNumbers);
             return "compose-page";
         } catch (IllegalStateException e) {

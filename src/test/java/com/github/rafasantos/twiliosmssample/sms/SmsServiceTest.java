@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @ActiveProfiles("test")
+@Disabled
 class SmsServiceTest {
     @Value("${test.endtoend.from_phone_number}")
     private String fromPhoneNumber;

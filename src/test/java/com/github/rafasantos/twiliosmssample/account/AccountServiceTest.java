@@ -1,5 +1,6 @@
 package com.github.rafasantos.twiliosmssample.account;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
 @ActiveProfiles("test")
+@Disabled
 class AccountServiceTest {
     @Autowired
     private AccountService target;
